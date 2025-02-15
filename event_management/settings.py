@@ -1,5 +1,6 @@
 
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,7 +15,8 @@ SECRET_KEY = 'django-insecure-_ohqddb042mkq3ko(cnts=q7yrnv34((ku)aj0^7^_!u-m$+sn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGIN=['http://*.onrender.com','http://127.0.0.1:8000']
 
 
 # Application definition
@@ -78,15 +80,22 @@ WSGI_APPLICATION = 'event_management.wsgi.application'
 # }
 #for postgres
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'event-list',
+#         'USER': 'postgres',
+#         'PASSWORD': 'rahat1234',
+#         'HOST': 'localhost',
+#         'PORT': '5432'
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'event-list',
-        'USER': 'postgres',
-        'PASSWORD': 'rahat1234',
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://event_management_8bej_user:jVpNFJUMCweSfy1ujZwCVSUvAmd3OASi@dpg-cuocmtogph6c73dlbvd0-a.oregon-postgres.render.com/event_management_8bej',
+        conn_max_age=600
+    )
 }
 
 
