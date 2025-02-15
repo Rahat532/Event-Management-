@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Event Management{% endblock %}</title>
+    {% comment %} <script src="https://cdn.tailwindcss.com"></script> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+
+</head>
+<body class="bg-gray-100">
+
+    {% comment %} <!-- Hero Section --> {% endcomment %}
+    <div class="relative w-full h-64 md:h-80 bg-cover bg-center flex items-center justify-center text-white"
+         style="background-image: url('{% static 'image/bg-3.jpg' %}'); background-size: cover; background-position: center;">
+        <div class="bg-black bg-opacity-50 p-6 rounded-lg text-center">
+            <h1 class="text-4xl font-bold">Welcome to Event Management</h1>
+            <p class="text-lg mt-2">Manage, Create, and Discover Events with Ease</p>
+            <a href="{% url 'event_list' %}" class="bg-blue-500 text-white px-6 py-3 rounded-lg mt-4 inline-block hover:bg-blue-600">
+                View Events
+            </a>
+        </div>
+    </div>
+
+    {% comment %} <!-- Navigation Bar --> {% endcomment %}
+    <nav class="bg-blue-600 p-4">
+        <div class="container mx-auto flex justify-between">
+            <a href="{% url 'organizer_dashboard' %}" class="text-white text-lg font-bold">Dashboard</a>
+            <div class="space-x-4">
+                <a href="{% url 'event_list' %}" class="text-white">Events</a>
+                <a href="{% url 'category_list' %}" class="text-white">Categories</a>
+                <a href="{% url 'participant_list' %}" class="text-white">Participants</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-6">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="bg-green-500 text-white p-3 rounded mb-4">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
+
+
+
+
