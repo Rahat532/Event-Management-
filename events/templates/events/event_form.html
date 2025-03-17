@@ -3,7 +3,7 @@
 {% block content %}
 <div class="bg-white p-6 rounded-lg shadow-md">
     <h1 class="text-2xl font-bold mb-4">{% if form.instance.id %}Edit Event{% else %}Add New Event{% endif %}</h1>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="space-y-4">
             {{ form.as_p }}

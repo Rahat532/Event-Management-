@@ -1,0 +1,430 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventCraft - Transforming Moments into Memories</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .swiper-slide {
+            background: linear-gradient(rgba(12, 24, 39, 0.7), rgba(12, 24, 39, 0.7));
+        }
+        .gold-accent {
+            color: #D4AF37;
+        }
+        .hover-grow {
+            transition: transform 0.3s ease;
+        }
+        .hover-grow:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-md fixed w-full z-50">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="text-xl font-bold text-gray-800">EventCraft</div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-4">
+                    <a href="#services" class="text-gray-600 hover:text-gray-800">Services</a>
+                    <a href="#portfolio" class="text-gray-600 hover:text-gray-800">Portfolio</a>
+                    <a href="#testimonials" class="text-gray-600 hover:text-gray-800">Testimonials</a>
+                    <a href="#contact" class="text-gray-600 hover:text-gray-800">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Sign In / Sign Up Buttons -->
+                <div class="flex gap-1">
+                    <a href="{% url 'sign-in' %}" class="hidden md:block bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition duration-300">Sign In</a>
+                    <a href="{% url 'sign-up' %}" class="hidden md:block bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition duration-300">Sign Up</a>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4">
+                <a href="#services" class="block py-2 text-gray-600 hover:text-gray-800">Services</a>
+                <a href="#portfolio" class="block py-2 text-gray-600 hover:text-gray-800">Portfolio</a>
+                <a href="#testimonials" class="block py-2 text-gray-600 hover:text-gray-800">Testimonials</a>
+                <a href="#contact" class="block py-2 text-gray-600 hover:text-gray-800">Contact</a>
+                <a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Sign In</a>
+                <a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+<!-- Hero Section with Slider -->
+<section class="relative pt-32">
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide relative w-full h-[600px] md:h-[800px] lg:h-[1000px] bg-cover bg-center flex items-center justify-center"
+                style="background-image: url('{% static 'image\BALL_1.jpeg' %}')">
+                <div class="absolute inset-0 bg-black/40"></div>
+                <div class="container mx-auto px-6 relative z-10">
+                    <div class="max-w-4xl mx-auto text-center text-white">
+                        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-8">
+                            Welcome to Event Management
+                        </h1>
+                        <p class="text-xl md:text-2xl lg:text-3xl mb-12">
+                            Manage, Create, and Discover Events with Ease
+                        </p>
+                        <a href="{% url 'sign-in' %}" 
+                           class="inline-block bg-purple-500 text-white px-10 py-4 rounded-xl 
+                                  text-xl font-semibold hover:bg-purple-600 transition-all 
+                                  duration-300 transform hover:scale-105 shadow-lg">
+                            Book Events
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="swiper-slide relative w-full h-[600px] md:h-[800px] lg:h-[1000px] bg-cover bg-center flex items-center justify-center"
+                style="background-image: url('{% static 'image\WEDING-1.jpeg' %}')">
+                <div class="absolute inset-0 bg-black/40"></div>
+                <div class="container mx-auto px-6 relative z-10">
+                    <div class="max-w-4xl mx-auto text-center text-white">
+                        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-8">
+                            Create Memorable Experiences
+                        </h1>
+                        <p class="text-xl md:text-2xl lg:text-3xl mb-12">
+                            Organize Your Perfect Event with Our Tools
+                        </p>
+                        <a href="{% url 'sign-in' %}" 
+                           class="inline-block bg-rose-500 text-white px-10 py-4 rounded-xl 
+                                  text-xl font-semibold hover:bg-rose-600 transition-all 
+                                  duration-300 transform hover:scale-105 shadow-lg">
+                            Book Event
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {% comment %} slid 3 {% endcomment %}
+            <div class="swiper-slide relative w-full h-[600px] md:h-[800px] lg:h-[1000px] bg-cover bg-center flex items-center justify-center"
+            style="background-image: url('{% static 'image\OFFICE_2.jpeg' %}')">
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="max-w-4xl mx-auto text-center text-white">
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-8">
+                        Create Memorable Experiences
+                    </h1>
+                    <p class="text-xl md:text-2xl lg:text-3xl mb-12">
+                        Organize Your Perfect Event with Our Tools
+                    </p>
+                    <a href="{% url 'sign-in' %}" 
+                       class="inline-block bg-rose-500 text-white px-10 py-4 rounded-xl 
+                              text-xl font-semibold hover:bg-rose-600 transition-all 
+                              duration-300 transform hover:scale-105 shadow-lg">
+                        Book Event
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+        <!-- Swiper Controls -->
+        <div class="swiper-pagination !bottom-8"></div>
+        <div class="swiper-button-next !h-16 !w-16 !after:text-3xl"></div>
+        <div class="swiper-button-prev !h-16 !w-16 !after:text-3xl"></div>
+    </div>
+</section>
+  <!-- Services Section -->
+<section id="services" class="py-20 bg-gradient-to-r from-blue-100 to-rose-300">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16">Our Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+            <!-- Wedding Planning -->
+            <div class="p-6 text-center hover-grow">
+                <i class="fas fa-glass-cheers text-4xl gold-accent mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Wedding Planning</h3>
+                <p class="text-gray-600">Create your dream wedding with our expert planners.</p>
+            </div>
+
+            <!-- Corporate Events -->
+            <div class="p-6 text-center hover-grow">
+                <i class="fas fa-briefcase text-4xl gold-accent mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Corporate Events</h3>
+                <p class="text-gray-600">Professional planning for conferences, seminars, and corporate gatherings.</p>
+            </div>
+
+            <!-- Venue Selection -->
+            <div class="p-6 text-center hover-grow">
+                <i class="fas fa-map-marked-alt text-4xl gold-accent mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Venue Selection</h3>
+                <p class="text-gray-600">Find the perfect location for your event, tailored to your needs.</p>
+            </div>
+
+            <!-- Catering Services -->
+            <div class="p-6 text-center hover-grow">
+                <i class="fas fa-utensils text-4xl gold-accent mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Catering Services</h3>
+                <p class="text-gray-600">Exquisite menus crafted by top chefs for any occasion.</p>
+            </div>
+
+            <!-- Entertainment -->
+            <div class="p-6 text-center hover-grow">
+                <i class="fas fa-music text-4xl gold-accent mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Entertainment</h3>
+                <p class="text-gray-600">Live bands, DJs, and performers to elevate your event.</p>
+            </div>
+
+            <!-- Event Decor -->
+            <div class="p-6 text-center hover-grow">
+                <i class="fas fa-palette text-4xl gold-accent mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Event Decor</h3>
+                <p class="text-gray-600">Stunning decor and themes to match your vision.</p>
+            </div>
+
+            <!-- Photography & Videography -->
+            <div class="p-6 text-center hover-grow">
+                <i class="fas fa-camera text-4xl gold-accent mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Photography & Videography</h3>
+                <p class="text-gray-600">Capture every moment with professional photo and video services.</p>
+            </div>
+
+            <!-- Event Marketing -->
+            <div class="p-6 text-center hover-grow">
+                <i class="fas fa-bullhorn text-4xl gold-accent mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Event Marketing</h3>
+                <p class="text-gray-600">Promote your event with targeted campaigns and social media strategies.</p>
+            </div>
+
+            <!-- Guest Management -->
+            <div class="p-6 text-center hover-grow">
+                <i class="fas fa-users text-4xl gold-accent mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Guest Management</h3>
+                <p class="text-gray-600">Seamless RSVP tracking and guest coordination.</p>
+            </div>
+
+            <!-- Transportation & Logistics -->
+            <div class="p-6 text-center hover-grow">
+                <i class="fas fa-bus text-4xl gold-accent mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Transportation & Logistics</h3>
+                <p class="text-gray-600">Efficient transport and logistics for hassle-free events.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-gradient-to-r from-blue-100 to-gray-300">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">Featured Events</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="relative group overflow-hidden rounded-lg">
+                    <img src="static\image\BALL_2.jpeg" alt="Corporate Event" class="w-full h-96 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center">
+                        <button class="text-white opacity-0 group-hover:opacity-100 transform -translate-y-4 group-hover:translate-y-0 transition-all">
+                            View Gallery <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg">
+                    <img src="static\image\BIRTHDAY.jpeg" alt="Corporate Event" class="w-full h-96 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center">
+                        <button class="text-white opacity-0 group-hover:opacity-100 transform -translate-y-4 group-hover:translate-y-0 transition-all">
+                            View Gallery <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg">
+                    <img src="static\image\BIRTHDAY_2.jpeg" alt="Corporate Event" class="w-full h-96 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center">
+                        <button class="text-white opacity-0 group-hover:opacity-100 transform -translate-y-4 group-hover:translate-y-0 transition-all">
+                            View Gallery <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg">
+                    <img src="static\image\OFFICE_1.jpeg" alt="Corporate Event" class="w-full h-96 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center">
+                        <button class="text-white opacity-0 group-hover:opacity-100 transform -translate-y-4 group-hover:translate-y-0 transition-all">
+                            View Gallery <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg">
+                    <img src="static\image\WEDING_3.jpeg" alt="Corporate Event" class="w-full h-96 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center">
+                        <button class="text-white opacity-0 group-hover:opacity-100 transform -translate-y-4 group-hover:translate-y-0 transition-all">
+                            View Gallery <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg">
+                    <img src="static\image\WEDING_2.jpeg" alt="Corporate Event" class="w-full h-96 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center">
+                        <button class="text-white opacity-0 group-hover:opacity-100 transform -translate-y-4 group-hover:translate-y-0 transition-all">
+                            View Gallery <i class="fas fa-external-link-alt ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Carousel -->
+    <section id="testimonials" class="py-20 bg-gradient-to-r from-blue-100 to-blue-600 text-white">
+        <div class="swiper container mx-auto px-6">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide py-12 text-center">
+                    <p class="text-xl italic mb-6">"EventCraft transformed our corporate gala into an unforgettable experience!"</p>
+                    <h4 class="font-bold">- John Smith, CEO</h4>
+                </div>
+                <div class="swiper-slide py-12 text-center">
+                    <p class="text-xl italic mb-6">"EventCraft transformed our corporate gala into an unforgettable experience!"</p>
+                    <h4 class="font-bold">- John Smith, CEO</h4>
+                </div>
+                <div class="swiper-slide py-12 text-center">
+                    <p class="text-xl italic mb-6">"EventCraft transformed our corporate gala into an unforgettable experience!"</p>
+                    <h4 class="font-bold">- John Smith, CEO</h4>
+                </div>
+                <div class="swiper-slide py-12 text-center">
+                    <p class="text-xl italic mb-6">"EventCraft transformed our corporate gala into an unforgettable experience!"</p>
+                    <h4 class="font-bold">- John Smith, CEO</h4>
+                </div>
+                <div class="swiper-slide py-12 text-center">
+                    <p class="text-xl italic mb-6">"EventCraft transformed our corporate gala into an unforgettable experience!"</p>
+                    <h4 class="font-bold">- John Smith, CEO</h4>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-r from-pink-300 to-gray-400">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-4xl font-bold mb-8">Start Planning</h2>
+                    <form class="space-y-6">
+                        <input type="text" placeholder="Your Name" class="w-full p-4 border rounded-lg">
+                        <input type="email" placeholder="Your Email" class="w-full p-4 border rounded-lg">
+                        <textarea rows="5" placeholder="Event Details" class="w-full p-4 border rounded-lg"></textarea>
+                        <button class="bg-blue-900 text-white px-8 py-4 rounded-lg hover:bg-blue-800">Submit Inquiry</button>
+                    </form>
+                </div>
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">Contact Info</h3>
+                        <p class="text-gray-600"><i class="fas fa-map-marker-alt gold-accent mr-2"></i>123 Event Street, NY</p>
+                        <p class="text-gray-600"><i class="fas fa-phone gold-accent mr-2"></i>(555) 123-4567</p>
+                    </div>
+                    <div class="flex space-x-6 text-2xl">
+                        <a href="#" class="text-blue-900 hover:text-blue-800"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-blue-900 hover:text-blue-800"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-blue-900 hover:text-blue-800"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+          <div class="flex flex-wrap justify-between">
+            <div class="w-full md:w-1/4 mb-8 md:mb-0">
+              <h3 class="text-lg font-semibold mb-4">Event Management</h3>
+              <p class="text-gray-400">
+                Empowering teams with efficient Event management solutions.
+              </p>
+            </div>
+            <div class="w-full md:w-1/4 mb-8 md:mb-0">
+              <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+              <ul class="text-gray-400 space-y-2">
+                <li><a href="#" class="hover:text-white">Home</a></li>
+                <li><a href="#" class="hover:text-white">Features</a></li>
+                <li><a href="#" class="hover:text-white">Pricing</a></li>
+                <li><a href="#" class="hover:text-white">Contact</a></li>
+              </ul>
+            </div>
+            <div class="w-full md:w-1/4 mb-8 md:mb-0">
+              <h4 class="text-lg font-semibold mb-4">Connect</h4>
+              <ul class="text-gray-400 space-y-2">
+                <li><a href="#" class="hover:text-white">Twitter</a></li>
+                <li><a href="#" class="hover:text-white">LinkedIn</a></li>
+                <li><a href="#" class="hover:text-white">Facebook</a></li>
+              </ul>
+            </div>
+            <div class="w-full md:w-1/4">
+              <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+              <form class="flex">
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-l-md focus:outline-none"
+                  required
+                />
+                <button
+                  type="submit"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition duration-300"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+          <div
+            class="border-t border-gray-700 mt-12 pt-8 text-sm text-center text-gray-400"
+          >
+            &copy; 2025 Event Management. All rights reserved.
+          </div>
+        </div>
+      </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            speed: 800,
+            autoplay: {
+                delay: 5000,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        document
+          .getElementById("menu-toggle")
+          .addEventListener("click", function () {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+          });
+  
+        document
+          .getElementById("user-menu-button")
+          .addEventListener("click", function () {
+            document.getElementById("user-menu").classList.toggle("hidden");
+          });
+  
+        // Close the dropdown when clicking outside
+        window.addEventListener("click", function (e) {
+          if (!document.getElementById("user-menu-button").contains(e.target)) {
+            document.getElementById("user-menu").classList.add("hidden");
+          }
+        });
+    </script>
+</body>
+</html>

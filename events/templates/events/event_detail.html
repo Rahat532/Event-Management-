@@ -2,6 +2,10 @@
 
 {% block content %}
 <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="space-y-5">
+        <div class="space-y-3">
+            <img src="{{ event.asset.url }}" alt="{{ event.name }}" class="w-full rounded-lg"/>
+        </div>
     <h1 class="text-2xl font-bold mb-4">{{ event.name }}</h1>
     <p class="text-gray-600">{{ event.description }}</p>
     <p class="text-sm text-gray-500 mt-2">
@@ -16,8 +20,10 @@
 
     <h2 class="text-xl font-semibold mt-6">Participants</h2>
     <ul class="mt-2">
-        {% for participant in event.participant_set.all %}
-        <li class="text-sm text-gray-500">{{ participant.name }} ({{ participant.email }})</li>
+        {% for participant in event.participants.all %}
+            <li class="text-sm text-gray-500">{{ participant.username }} ({{ participant.email }})</li>
+        {% empty %}
+            <li class="text-sm text-gray-500">No participants yet.</li>
         {% endfor %}
     </ul>
 

@@ -1,33 +1,66 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="bg-white p-6 rounded-lg shadow-md">
-    <h1 class="text-2xl font-bold mb-4">Events</h1>
-    <a href="{% url 'event_create' %}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-4 inline-block">Add New Event</a>
+<div class="container mx-auto p-6">
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-extrabold mb-6 text-gray-800">📅 Manage Your Events</h1>
+        
+        <!-- Add Event Button -->
+        <a href="{% url 'event_create' %}" class="bg-rose-500 text-white px-5 py-2 rounded-lg hover:bg-rose-600 transition shadow">
+            ➕ Add New Event
+        </a>
 
-    <form method="GET" class="mb-4">
-        <input type="text" name="q" placeholder="Search events..." class="border p-2 rounded">
-        <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded">Search</button>
-    </form>
+        <!-- Search Bar -->
+        <form method="GET" class="mt-6 flex items-center space-x-4">
+            <input type="text" name="q" placeholder="Search events..." 
+                   class="border p-2 rounded-lg w-full md:w-1/2 focus:ring focus:ring-rose-300">
+            <button type="submit" class="bg-rose-500 text-white px-4 py-2 rounded-lg hover:bg-rose-600 transition shadow">
+                🔍 Search
+            </button>
+        </form>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for event in events %}
-        <div class="border p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-            <h2 class="text-xl font-semibold">{{ event.name }}</h2>
-            <p class="text-gray-600">{{ event.description }}</p>
-            <p class="text-sm text-gray-500">{{ event.date }} | {{ event.time }}</p>
-            <p class="text-sm text-gray-500">{{ event.location }}</p>
-            <p class="text-sm text-gray-500">Category: {{ event.category.name }}</p>
-            <p class="text-sm text-gray-500">Participants: {{ event.participant_set.count }}</p>
-            <div class="mt-4 space-x-2">
-                <a href="{% url 'event_detail' event.id %}" class="bg-green-500 text-white px-3 py-1 rounded">View</a>
-                <a href="{% url 'event_update' event.id %}" class="bg-yellow-500 text-white px-3 py-1 rounded">Edit</a>
-                <a href="{% url 'event_delete' event.id %}" class="bg-red-500 text-white px-3 py-1 rounded">Delete</a>
+        <!-- Events Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+            {% for event in events %}
+            <div class="border p-5 rounded-lg shadow-lg bg-white hover:shadow-xl transition duration-300">
+                <div class="space-y-5">
+                    <div class="space-y-3">
+                        <img src="{{ event.asset.url }}" alt="{{ event.name }}" class="w-full rounded-lg"/>
+                    </div>
+                    
+                    <h2 class="text-xl font-bold text-gray-800">{{ event.name }}</h2>
+                    <p class="text-gray-600 mt-1">{{ event.description }}</p>
+                    <p class="text-sm text-gray-500 mt-2">📅 {{ event.date }} | 🕒 {{ event.time }}</p>
+                    <p class="text-sm text-gray-500">📍 {{ event.location }}</p>
+                    <p class="text-sm text-gray-500">🏷 Category: <span class="font-semibold">{{ event.category.name }}</span></p>
+                </div>
+
+                <!-- Buttons -->
+                <div class="mt-6 flex space-x-4 justify-between">
+                    <a href="{% url 'event_detail' event.id %}" 
+                       class="bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700 transition shadow">
+                        👁 View
+                    </a>
+                    <a href="{% url 'event_update' event.id %}" 
+                       class="bg-yellow-500 text-white px-5 py-2 rounded-lg hover:bg-yellow-600 transition shadow">
+                        ✏ Edit
+                    </a>
+                    <a href="{% url 'event_delete' event.id %}" 
+                       class="bg-red-600 text-white px-5 py-2 rounded-lg hover:bg-red-700 transition shadow">
+                        ❌ Delete
+                    </a>
+                    <a href="{% url 'rsvp_event' event.id %}" class="bg-rose-500 text-white px-5 py-2 rounded-lg hover:bg-rose-600 transition shadow">
+                        RSVP Now
+                    </a>
+                </div>
             </div>
+            {% empty %}
+            <p class="text-gray-500 col-span-full text-center">⚠ No events found.</p>
+            {% endfor %}
         </div>
-        {% empty %}
-        <p>No events found.</p>
-        {% endfor %}
     </div>
 </div>
 {% endblock %}
+
+

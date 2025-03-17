@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Event Management{% endblock %}</title>
+    {% comment %} <script src="https://cdn.tailwindcss.com"></script> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+
+</head>
+<body class="bg-slate-300">
+
+    {% comment %} <!-- Navigation Bar --> {% endcomment %}
+    <nav class="bg-gradient-to-r from-blue-200 to-blue-400 p-4">
+        <div class="container mx-auto flex justify-between">
+            <a href="{% url 'organizer_dashboard' %}" class="text-black text-lg font-bold hover:bg-gradient-to-r from-pink-400 to-rose-500">Dashboard</a>
+            <div class="space-x-4">
+                <a href="{% url 'event_list' %}" class="text-black hover:bg-gradient-to-r from-pink-400 to-rose-500">Events</a>
+                <form method="post" action="{% url 'logout' %}" class="inline-block">
+                  {% csrf_token %}
+                  <button class="text-black hover:bg-gradient-to-r from-pink-400 to-rose-500 px-4 py-2 rounded-lg transition">
+                      Logout
+                  </button>
+              </form>
+            </div>
+        </div>
+    </nav>
+      {% comment %} <!-- Hero Section --> {% endcomment %}
+    <div class="relative w-full h-64 md:h-80 bg-cover bg-center flex items-center justify-center text-white"
+         style="background-image: url('{% static '\image\bg6.jpg' %}'); background-size: cover; background-position: center;">
+        <div class="bg-black bg-opacity-50 p-6 rounded-lg text-center">
+            <h1 class="text-4xl font-bold">Welcome to Event Management</h1>
+            <p class="text-lg mt-2">Book and Discover Events with Ease</p>
+            <a href="{% url 'event_list' %}" class="bg-purple-300/50  text-white px-6 py-3 rounded-lg mt-4 inline-block hover:bg-gradient-to-r from-pink-400 to-rose-600">
+                View Events
+            </a>
+        </div>
+    </div>
+
+    <div class="container mx-auto p-6">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="bg-green-500 text-white p-3 rounded mb-4">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+       <div>
+        <div class="container mx-auto p-6">
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+              <h1 class="text-3xl font-extrabold mb-6 text-gray-800">📅 Your RSVP'd Events</h1>
+              
+              <!-- Event List -->
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                  {% for event in rsvp_events %}
+                  <div class="border p-5 rounded-lg shadow-md bg-gray-50 hover:shadow-lg transition">
+                      <div class="space-y-4">
+                          <img src="{{ event.asset.url }}" alt="{{ event.name }}" 
+                               class="w-full h-48 object-cover rounded-lg shadow-md"
+                               onerror="this.src='{% static 'image\OFFICE_1.jpeg' %}';"/>
+                          <h2 class="text-xl font-bold text-gray-800">{{ event.name }}</h2>
+                          <p class="text-gray-600 mt-1">{{ event.description }}</p>
+                          <p class="text-sm text-gray-500 mt-2">📅 {{ event.date }} | 🕒 {{ event.time }}</p>
+                          <p class="text-sm text-gray-500">📍 {{ event.location }}</p>
+                          <p class="text-sm text-gray-500">🏷 Category: <span class="font-semibold">{{ event.category.name }}</span></p>
+      
+                          <!-- View Event Details Button -->
+                          <div class="mt-4">
+                              <a href="{% url 'event_detail' event.id %}" 
+                                 class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition shadow">
+                                  👁 View Details
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+                  {% empty %}
+                  <p class="text-gray-500 col-span-full text-center">⚠ You have not RSVP'd to any events yet.</p>
+                  {% endfor %}
+              </div>
+          </div>
+      </div>
+       </div>
+    </div>
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+          <div class="flex flex-wrap justify-between">
+            <div class="w-full md:w-1/4 mb-8 md:mb-0">
+              <h3 class="text-lg font-semibold mb-4">Event Management</h3>
+              <p class="text-gray-400">
+                Empowering teams with efficient Event management solutions.
+              </p>
+            </div>
+            <div class="w-full md:w-1/4 mb-8 md:mb-0">
+              <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+              <ul class="text-gray-400 space-y-2">
+                <li><a href="#" class="hover:text-white">Home</a></li>
+                <li><a href="#" class="hover:text-white">Features</a></li>
+                <li><a href="#" class="hover:text-white">Pricing</a></li>
+                <li><a href="#" class="hover:text-white">Contact</a></li>
+              </ul>
+            </div>
+            <div class="w-full md:w-1/4 mb-8 md:mb-0">
+              <h4 class="text-lg font-semibold mb-4">Connect</h4>
+              <ul class="text-gray-400 space-y-2">
+                <li><a href="#" class="hover:text-white">Twitter</a></li>
+                <li><a href="#" class="hover:text-white">LinkedIn</a></li>
+                <li><a href="#" class="hover:text-white">Facebook</a></li>
+              </ul>
+            </div>
+            <div class="w-full md:w-1/4">
+              <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+              <form class="flex">
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-l-md focus:outline-none"
+                  required
+                />
+                <button
+                  type="submit"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition duration-300"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+          <div
+            class="border-t border-gray-700 mt-12 pt-8 text-sm text-center text-gray-400"
+          >
+            &copy; 2025 Event Management. All rights reserved.
+          </div>
+        </div>
+      </footer>
+</body>
+</html>
