@@ -13,4 +13,6 @@ from django.core.asgi import get_asgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'event_management.settings')
 
-application = get_asgi_application()
+
+port = int(os.environ.get("PORT", 8000))  # Default to 8000 if PORT is not set
+
