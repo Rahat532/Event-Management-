@@ -20,7 +20,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'event-management-bzye.onrender.com',
+    'event-management-1-g63x.onrender.com'
 ]
 
 
