@@ -1,4 +1,4 @@
-
+from decouple import config
 from pathlib import Path
 import dj_database_url
 import os
@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_ohqddb042mkq3ko(cnts=q7yrnv34((ku)aj0^7^_!u-m$+sn'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -102,11 +102,11 @@ WSGI_APPLICATION = 'event_management.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'event-list',
-#         'USER': 'postgres',
-#         'PASSWORD': 'rahat1234',
-#         'HOST': 'localhost',
-#         'PORT': '5432'
+#         'NAME': config('DB_NAME',default=''),
+#         'USER': config('DB_USER',default=''),
+#         'PASSWORD': config('DB_PASSWORD',default=''),
+#         'HOST': config('DB_HOST',default='localhost'),
+#         'PORT': config('DB_PORT', cast=int),
 #     }
 # }
 DATABASES = {
@@ -161,14 +161,13 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-"uast erbm srmr qcbs"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER ="abdullahalrahat4261@gmail.com"
-EMAIL_HOST_PASSWORD = "uast erbm srmr qcbs"
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS',cast=bool)
+EMAIL_PORT = config('EMAIL_PORT',cast=int)
+EMAIL_HOST_USER =config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
