@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     'https://event-management-bzye.onrender.com',
     'http://127.0.0.1:8000',
+    'https://event-management-1-g63x.onrender.com',
 ]
 
 
